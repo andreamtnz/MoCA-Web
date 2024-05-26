@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoCA Test 1 Part 2</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body style = "background-color:powderblue;">
+    <h1 style="font-family:verdana; text-align: center;">Test 1 Part 2</h1>
+    
+    <canvas id="myCanvas" width="400" height="400" style="background-color:white; border:1px solid #000000; position: absolute;top:75px; left:550px;"></canvas>
+    <br>
+    
+    <button onclick="downloadCanvas()" style="position: absolute;top:500px; left:700px; height:50px; width:75px; font-size:140%;" >Next</button>
+    <audio controls autoplay style="position: absolute; top: 570px; left: 600px">
+        <source src="test1_part2.mp3" type="audio/mpeg" >
+    </audio>
+    <script>
+        // Obtener el canvas y el contexto 2D
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var c = document.getElementById("myCanvas");
+        var line1 = c.getContext("2d");
+        line1.moveTo(250, 20);
+        line1.lineTo(350, 20);
+        line1.stroke();
+
+        var line2 = c.getContext("2d");
+        line2.moveTo(250, 20);
+        line2.lineTo(250, 120);
+        line2.stroke();
+
+        var line3 = c.getContext("2d");
+        line3.moveTo(250, 120);
+        line3.lineTo(350, 120);
+        line3.stroke();
+
+        var line4 = c.getContext("2d");
+        line4.moveTo(350, 20);
+        line4.lineTo(350, 120);
+        line4.stroke();
+
+        var line11 = c.getContext("2d");
+        line11.moveTo(230, 40);
+        line11.lineTo(330, 40);
+        line11.stroke();
+
+        var line22 = c.getContext("2d");
+        line22.moveTo(230, 40);
+        line22.lineTo(230, 140);
+        line22.stroke();
+
+        var line33 = c.getContext("2d");
+        line33.moveTo(330, 40);
+        line33.lineTo(330, 140);
+        line33.stroke();
+
+        var line44 = c.getContext("2d");
+        line44.moveTo(230, 140);
+        line44.lineTo(330, 140);
+        line44.stroke();
+
+        var line5 = c.getContext("2d");
+        line5.moveTo(250, 20);
+        line5.lineTo(230, 40);
+        line5.stroke();
+
+        var line6 = c.getContext("2d");
+        line6.moveTo(350, 20);
+        line6.lineTo(330, 40);
+        line6.stroke();
+
+        var line7 = c.getContext("2d");
+        line7.moveTo(250, 120);
+        line7.lineTo(230, 140);
+        line7.stroke();
+
+        var line8 = c.getContext("2d");
+        line7.moveTo(350, 120);
+        line7.lineTo(330, 140);
+        line7.stroke();
+
+        // Variables para controlar el dibujo
+        var isDrawing = false;
+        var prevX, prevY;
+
+        // Evento de inicio del dibujo
+        canvas.addEventListener("mousedown", function(e) {
+            isDrawing = true;
+            prevX = e.clientX - canvas.offsetLeft;
+            prevY = e.clientY - canvas.offsetTop;
+        });
+
+        // Evento de dibujo
+        canvas.addEventListener("mousemove", function(e) {
+            if (isDrawing) {
+                var x = e.clientX - canvas.offsetLeft;
+                var y = e.clientY - canvas.offsetTop;
+                drawLine(prevX, prevY, x, y);
+                prevX = x;
+                prevY = y;
+            }
+        });
+
+        // Evento de fin del dibujo
+        canvas.addEventListener("mouseup", function() {
+            isDrawing = false;
+        });
+
+        // Función para dibujar una línea
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // Función para descargar el dibujo
+        function downloadCanvas() {
+            var link = document.createElement('a')
+            link.download = 'cube.jpg'
+            link.href = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream")
+            link.click()
+
+            setTimeout(function() {
+            window.location.href = "test1_part3.html"
+            }, 1)
+        }
+    </script>
+</body>
+</html>

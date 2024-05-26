@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoCA Test 1 Part 3</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body style = "background-color:powderblue;">
+    <h1 style="font-family:verdana; text-align: center;">Test 1 Part 3</h1>
+    
+    <canvas id="myCanvas" width="400" height="400" style="background-color: white;border:1px solid #000000; position: absolute;top:75px; left:550px;"></canvas>
+    <br>
+    
+    <button onclick="downloadCanvas()" style="position: absolute;top:500px; left:700px; height:50px; width:75px; font-size:140%;" >Next</button>
+    <audio controls autoplay style="position: absolute; top: 570px; left: 600px">
+        <source src="test1_part3.mp3" type="audio/mpeg" >
+    </audio>
+    <script>
+        // Obtener el canvas y el contexto 2D
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Variables para controlar el dibujo
+        var isDrawing = false;
+        var prevX, prevY;
+
+        // Evento de inicio del dibujo
+        canvas.addEventListener("mousedown", function(e) {
+            isDrawing = true;
+            prevX = e.clientX - canvas.offsetLeft;
+            prevY = e.clientY - canvas.offsetTop;
+        });
+
+        // Evento de dibujo
+        canvas.addEventListener("mousemove", function(e) {
+            if (isDrawing) {
+                var x = e.clientX - canvas.offsetLeft;
+                var y = e.clientY - canvas.offsetTop;
+                drawLine(prevX, prevY, x, y);
+                prevX = x;
+                prevY = y;
+            }
+        });
+
+        // Evento de fin del dibujo
+        canvas.addEventListener("mouseup", function() {
+            isDrawing = false;
+        });
+
+        // Función para dibujar una línea
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // Función para descargar el dibujo
+        function downloadCanvas() {
+            var link = document.createElement('a');
+            link.download = 'clock.jpg';
+            link.href = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            link.click();
+            setTimeout(function() {
+            window.location.href = "test2.html"
+            }, 1)
+
+        }
+    </script>
+</body>
+</html>

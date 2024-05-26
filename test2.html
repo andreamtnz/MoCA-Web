@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoCA Test 2</title>
+    <style>
+        .text-box {
+            width: 100px;
+            height: 30px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: verdana;
+            position: absolute
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body style="background-color:powderblue;">
+    
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test 2</h1>
+    
+    <img class="image" src="lion.jpg"  style="width:275px;height:175px; position: absolute;top:125px; left:320px;">
+    <img class="image" src="rhino.jpg" style="width:275px;height:175px; position: absolute;top:125px; left:620px;">
+    <img class="image" src="camel.jpg" style="width:275px;height:175px; position: absolute;top:125px; left:920px;">
+
+    <input type="text" id="textLion" class="text-box" placeholder="Write here" style = "top:315px; left: 400px;">
+    <input type="text" id="textRhino" class="text-box" placeholder="Write here" style = "top:315px; left: 700px;">
+    <input type="text" id="textCamel" class="text-box" placeholder="Write here" style = "top:315px; left: 1000px;">
+
+    
+    
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 675px; height:75px; width:150px; font-size:140%;" >Finish</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 600px">
+        <source src="test2.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        function downloadText() {
+        // Obtener el contenido del textarea
+        var contenido1 = document.getElementById("textLion").value;
+        var contenido2 = document.getElementById("textRhino").value;
+        var contenido3 = document.getElementById("textCamel").value;
+        
+   
+        // Crear un objeto Blob para el contenido
+        var blob = new Blob([contenido1," ", contenido2," ",contenido3], { type: "text/plain;charset=utf-8" });
+    
+        // Guardar el Blob como nameLastname
+        saveAs(blob, "animals.txt");
+
+        setTimeout(function() {
+        window.location.href = "end.html"
+        }, 1)
+
+        
+    }
+</script>
+</body>
+</html>

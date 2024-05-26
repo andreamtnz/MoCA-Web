@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoCA Test 1 Part 1</title>
+<style>
+    .container {
+        position: relative; /* Añadir posición relativa para posicionar las burbujas */
+        width: 100%;
+        height: 300px; /* Establecer una altura para el contenedor */
+    }
+    .bubble {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: lightsalmon;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-family: Verdana;
+        font-size: 20px;
+        position: absolute; /* Añadir posición absoluta para posicionar las burbujas dentro del contenedor */
+    }
+</style>
+</head>
+<body style="background-color:powderblue;">
+
+    <h1 style=" font-family: Verdana; text-align: center;">Test 1 - Part 1</h1>
+    <h3 style=" font-family: Verdana; position: absolute; top: 40px; left:10px">Note:</h1>
+    <p style=" font-family: Verdana; position: absolute; top: 65px; left:10px">Orange bubbles mean they are not selected. <br>Green bubbles mean they are selected. <br>Click on a bubble to select/unslelect it. </p>
+
+<div class="container">
+    <div class="bubble" data-number="1" style="top: 170px; left: 600px">1</div>
+    <div class="label" style="font-family: Verdana; position: absolute; top: 220px; left: 607px">Begin</div>
+    <div class="bubble" data-number="A" style="top: 50px; left: 775px">A</div>
+    <div class="bubble" data-number="2" style="top: 140px; left: 855px">2</div>
+    <div class="bubble" data-number="B" style="top: 140px; left: 750px">B</div>
+    <div class="bubble" data-number="3" style="top: 240px; left: 855px">3</div>
+    <div class="bubble" data-number="C" style="top: 290px; left: 600px">C</div>
+    <div class="bubble" data-number="4" style="top: 225px; left: 700px">4</div>
+    <div class="bubble" data-number="D" style="top: 225px; left: 530px">D</div>
+    <div class="bubble" data-number="5" style="top: 100px; left: 510px">5</div>
+    <div class="bubble" data-number="E" style="top: 50px; left: 600px">E</div>
+    <div class="label" style="font-family: Verdana; position: absolute; top: 100px; left: 612px">End</div>
+    
+</div>
+
+<button onclick="generateText()" style="position: absolute;top: 450px; left: 700px; height:50px; width:75px; font-size:140%;" >Next</button>
+<audio controls autoplay style="position: absolute; top: 550px; left: 600px">
+    <source src="test1_part1.mp3" type="audio/mpeg" >
+</audio>
+<script>
+    var clickedBubbles = [];
+    var startTime = Date.now();
+
+    // Función para manejar el clic en las burbujas
+    function handleClick(event) {
+        var bubbleNumber = event.target.getAttribute('data-number');
+        if (!clickedBubbles.includes(bubbleNumber)) {
+            clickedBubbles.push(bubbleNumber);
+            event.target.style.backgroundColor = 'lightgreen';
+        } else {
+            clickedBubbles = clickedBubbles.filter(function(number) {
+                return number !== bubbleNumber;
+            });
+            event.target.style.backgroundColor = 'lightsalmon';
+        }
+    }
+
+    // Asignar el manejador de eventos a cada burbuja
+    var bubbles = document.querySelectorAll('.bubble');
+    bubbles.forEach(function(bubble) {
+        bubble.addEventListener('click', handleClick);
+    });
+
+    // Función para generar el texto con el orden de las burbujas clicadas
+    function generateText() {
+        var timeUsed = Date.now() - startTime;
+        var text =  clickedBubbles.join(', ') ;
+        text = text + '\n' + 'Time: ' + timeUsed + 'ms'
+        
+        // Crear un enlace para descargar el texto como archivo
+        var link = document.createElement('a');
+        link.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        link.setAttribute('download', 'results_test1_part1.txt');
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    
+        setTimeout(function() {
+            window.location.href = "test1_part2.html";
+            }, 1);
+    }
+</script>
+
+</body>
+</html>

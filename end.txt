@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'> 
+    <title>End page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+<body style="background-color:powderblue;">
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test Finished!</h1>
+     
+</script>
+</body>
+</html>

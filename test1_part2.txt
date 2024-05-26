@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
+Your browser does not support the HTML canvas tag.
+</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var line1 = c.getContext("2d");
+line1.moveTo(250, 20);
+line1.lineTo(350, 20);
+line1.stroke();
+
+var line2 = c.getContext("2d");
+line2.moveTo(250, 20);
+line2.lineTo(250, 120);
+line2.stroke();
+
+var line3 = c.getContext("2d");
+line3.moveTo(250, 120);
+line3.lineTo(350, 120);
+line3.stroke();
+
+var line4 = c.getContext("2d");
+line4.moveTo(350, 20);
+line4.lineTo(350, 120);
+line4.stroke();
+
+var line11 = c.getContext("2d");
+line11.moveTo(230, 40);
+line11.lineTo(330, 40);
+line11.stroke();
+
+var line22 = c.getContext("2d");
+line22.moveTo(230, 40);
+line22.lineTo(230, 140);
+line22.stroke();
+
+var line33 = c.getContext("2d");
+line33.moveTo(330, 40);
+line33.lineTo(330, 140);
+line33.stroke();
+
+var line44 = c.getContext("2d");
+line44.moveTo(230, 140);
+line44.lineTo(330, 140);
+line44.stroke();
+
+var line5 = c.getContext("2d");
+line5.moveTo(250, 20);
+line5.lineTo(230, 40);
+line5.stroke();
+
+var line6 = c.getContext("2d");
+line6.moveTo(350, 20);
+line6.lineTo(330, 40);
+line6.stroke();
+
+var line7 = c.getContext("2d");
+line7.moveTo(250, 120);
+line7.lineTo(230, 140);
+line7.stroke();
+
+var line8 = c.getContext("2d");
+line7.moveTo(350, 120);
+line7.lineTo(330, 140);
+line7.stroke();
+
+</script>
+
+</body>
+</html>
