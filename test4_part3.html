@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 4 - Part 3</title>
+    <style>
+        .text-box {
+            width: 100px;
+            height: 30px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: verdana;
+            position: absolute
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body style="background-color:powderblue;">
+    
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test 4 - Part 3</h1>
+    
+    <input type="text" id="numbers1" class="text-box" placeholder="First substraction" style = "width: 160px; top:315px; left: 20%; transform: translateX(-50%); "> 
+    <input type="text" id="numbers2" class="text-box" placeholder="Second substraction" style = "width: 160px; top:315px; left: 35%; transform: translateX(-50%); "> 
+    <input type="text" id="numbers3" class="text-box" placeholder="Third substraction" style = "width: 160px; top:315px; left: 50%; transform: translateX(-50%); "> 
+    <input type="text" id="numbers4" class="text-box" placeholder="Fourth substraction" style = "width: 160px; top:315px; left: 65%; transform: translateX(-50%); "> 
+    <input type="text" id="numbers5" class="text-box" placeholder="Fifth substraction" style = "width: 160px; top:315px; left: 80%; transform: translateX(-50%); "> 
+
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 50%; transform: translateX(-50%); height:50px; width:75px; font-size:140%;" >Next</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test4_part3.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        function downloadText() {
+        // Obtener el contenido de los inputs
+        var contenido1 = document.getElementById("numbers1").value;
+        var contenido2 = document.getElementById("numbers2").value;
+        var contenido3 = document.getElementById("numbers3").value;
+        var contenido4 = document.getElementById("numbers4").value;
+        var contenido5 = document.getElementById("numbers5").value;
+
+        
+        // Crear un objeto Blob para el contenido
+        var blob = new Blob([contenido1," ", contenido2, " ",contenido3," ", contenido4, " ",contenido5], { type: "text/plain;charset=utf-8" });
+    
+        // Guardar el Blob como nameLastname
+        saveAs(blob, "substractionby7.txt");
+
+        setTimeout(function() {
+        window.location.href = "test5_part11.html"
+        }, 1)
+
+        
+    }
+</script>
+</body>
+</html>

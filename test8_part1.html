@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 8 - Part 1</title>
+    <style>
+        .text-box {
+            width: 200px;
+            height: 30px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: verdana; 
+            position: absolute;
+            line-height: 30px; /*centrar texto verticalmente*/
+        }
+        
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body style="background-color:powderblue;">
+    
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test 8 - Part 1</h1>
+    <h1 style=" font-family: Verdana; text-align: center;">What day is it today?</h1>
+    
+    <input type="text" id="first" class="text-box" placeholder="Write here" style = "top:150px; left: 60%; transform: translateX(-50%); ">
+    <input type="text" id="second" class="text-box" placeholder="Write here" style = "top:210px; left: 60%; transform: translateX(-50%); ">
+    <input type="text" id="third" class="text-box" placeholder="Write here" style = "top:270px; left: 60%; transform: translateX(-50%); ;">
+    <input type="text" id="fourth" class="text-box" placeholder="Write here" style = "top:330px; left: 60%; transform: translateX(-50%); ;">
+
+    <div class = "text-box" style = "top: 150px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Exact date</div>
+    <div class = "text-box" style = "top: 210px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Year</div>
+    <div class = "text-box" style = "top: 270px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Month</div>
+    <div class = "text-box" style = "top: 330px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Day of the week</div>
+
+
+
+    
+    
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 50%; transform: translateX(-50%); height:50px; width:75px; font-size:140%;" >Next</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test8_part1.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        function downloadText() {
+        // Obtener el contenido del textarea
+        var contenido1 = document.getElementById("first").value;
+        var contenido2 = document.getElementById("second").value;
+        var contenido3 = document.getElementById("third").value;
+        var contenido4 = document.getElementById("fourth").value;
+       
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString();
+
+        // Crear un objeto Blob para el contenido
+        var blob = new Blob(["EXACT DATE: ", contenido1,"\nYEAR: ", contenido2,"\nMONTH: ",contenido3, "\nDAY OF THE WEEK: ", contenido4, "\nCORRECT ANSWER: ", formattedDate], { type: "text/plain;charset=utf-8" });
+    
+        // Guardar el Blob como nameLastname
+        saveAs(blob, "orientation1.txt");
+
+        setTimeout(function() {
+        window.location.href = "test8_part2.html"
+        }, 1)
+
+        
+    }
+</script>
+</body>
+</html>

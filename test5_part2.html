@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 5 - Part 2</title>
+    <style>
+        #timer {
+            font-family: Verdana;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin-top: 10px;
+        }
+        body {
+            font-family: Verdana;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /*height: 100vh;*/
+            /*margin: 0;*/
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body style = "background-color:powderblue;">
+
+    <h1 style="text-align: center;">Test 5 - Part 2</h1>
+    <button id="startBtn" style= "position: absolute; top: 180px; left: 50%; transform: translateX(-50%); height:50px; width:75px;" >Start</button>
+    <h1 style="text-align: center; position: absolute; top: 140px; left: 50%; transform: translateX(-50%);font-size: 150px;">F</h1>
+
+    <!--  <button id="stopBtn" disabled style= "position: absolute; top: 320px; left: 50%; transform: translateX(-50%); height:50px; width:75px;" >Stop</button> -->
+    <button id="downloadBtn" disabled style = "position: absolute;top: 420px; left: 50%; transform: translateX(-50%); height:50px; width:75px;">Next</button>
+
+    <p id="status"></p>
+    <p id="timer">01:00</p>
+    <!-- <audio id="audioPlayback" controls></audio> -->
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test5_part2.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const startBtn = document.getElementById('startBtn');
+        /*  const stopBtn = document.getElementById('stopBtn'); */
+        const downloadBtn = document.getElementById('downloadBtn');
+        const status = document.getElementById('status');
+        /*const audioPlayback = document.getElementById('audioPlayback');*/
+        const timerElement = document.getElementById('timer');
+        let timerInterval;
+
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            timerInterval = setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(timerInterval);
+                    stopRecording();
+                }
+            }, 1000); // cada cuanto se hace, 1000 ms ,es decir, 1 s
+        }
+
+        async function startRecording() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                downloadBtn.disabled = false;
+
+                downloadBtn.addEventListener('click', () => {
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = audioUrl;
+                    a.download = 'fwords.wav';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    setTimeout(() => {
+                        window.location.href = "test6.html";
+                    }, 1);
+                });
+
+                status.textContent = "Recording stopped";
+                clearInterval(timerInterval);
+                timerElement.textContent = "01:00";
+            };
+
+            mediaRecorder.start();
+            status.textContent = "Recording...";
+            startBtn.disabled = true;
+            startTimer(60, timerElement);
+        }
+
+        function stopRecording() {
+            if (mediaRecorder.state === "recording") {
+                mediaRecorder.stop();
+                startBtn.disabled = false;
+            }
+        }
+
+        startBtn.addEventListener('click', startRecording);
+
+    
+    </script>
+</body>
+</html>

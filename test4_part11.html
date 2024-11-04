@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 4 - Part 1.1</title>
+    <style>
+        .text-box {
+            width: 100px;
+            height: 30px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: verdana;
+            position: absolute
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body style="background-color:powderblue;">
+    
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test 4 - Part 1.1</h1>
+    
+    
+    <input type="text" id="numbers" class="text-box" placeholder="Write here" style = "top:275px; left: 50%; transform: translateX(-50%); width: 120px;">
+   
+
+    
+    
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 50%; transform: translateX(-50%); height:50px; width:75px; font-size:140%;" >Next</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test4_part11.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        function downloadText() {
+        // Obtener el contenido del textarea
+        var contenido1 = document.getElementById("numbers").value;
+        
+        
+   
+        // Crear un objeto Blob para el contenido
+        var blob = new Blob([contenido1], { type: "text/plain;charset=utf-8" });
+    
+        // Guardar el Blob como nameLastname
+        saveAs(blob, "forwardnumbers.txt");
+
+        setTimeout(function() {
+        window.location.href = "test4_part12.html"
+        }, 1)
+
+        
+    }
+</script>
+</body>
+</html>

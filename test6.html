@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 6</title>
+    <style>
+        .text-box {
+            width: 150px;
+            height: 30px;
+            padding: 3px;
+            font-size: 16px;
+            font-family: verdana;
+            position: absolute;
+            line-height: 30px; /*centrar texto verticalmente*/
+        }
+        
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body style="background-color:powderblue;">
+    
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test 6</h1>
+    
+    
+    <input type="text" id="textTransport" class="text-box" placeholder="Write here" style = "top:215px; left: 60%; transform: translateX(-50%); ">
+    <input type="text" id="textMeasuring" class="text-box" placeholder="Write here" style = "top:315px; left: 60%; transform: translateX(-50%); ">
+
+    <div class = "text-box" style = "top: 115px; left: 60%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Fruits</div>    
+    <div class = "text-box" style = "top: 115px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Orange - Banana</div>    
+    <div class = "text-box" style = "top: 215px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Train - Bicycle</div>    
+    <div class = "text-box" style = "top: 315px; left: 40%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Ruler - Watch</div>    
+
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 50%; transform: translateX(-50%); height:50px; width:75px; font-size:140%;" >Next</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test6.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        function downloadText() {
+        // Obtener el contenido del textarea
+        var contenido1 = document.getElementById("textTransport").value;
+        var contenido2 = document.getElementById("textMeasuring").value;
+        
+   
+        // Crear un objeto Blob para el contenido
+        var blob = new Blob(["Train - Bycicle: ",contenido1,"\nRuler - Watch: ", contenido2,], { type: "text/plain;charset=utf-8" });
+    
+        // Guardar el Blob como nameLastname
+        saveAs(blob, "abstraction.txt");
+
+        setTimeout(function() {
+        window.location.href = "test7_part1.html"
+        }, 1)
+
+        
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 3 - Try 1</title>
+    <style>
+        body {
+            font-family: Verdana;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /*height: 100vh;*/
+            /*margin: 0;*/
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body style = "background-color:powderblue;">
+    <h1 style="text-align: center;">Test 3 - Try 1</h1>
+
+    <button id="start">Start</button>
+    <button id="stop" disabled>Stop</button>
+    <button id="downloadButton" disabled style = "position: absolute;top: 420px; height:50px; width:75px;">Next</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test3_part1.mp3" type="audio/mpeg" >
+    </audio>
+    <!--  <a id="downloadLink" style="display: none;">Descargar Audio</a>-->
+
+    
+    
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        document.getElementById('start').addEventListener('click', async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                document.getElementById('downloadButton').disabled = false;
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const downloadButton = document.getElementById('downloadButton');
+                downloadButton.href = audioUrl;
+                /*downloadButton.download = 'memory_try1.wav';*/
+                downloadButton.style.display = 'block';
+                downloadButton.textContent = 'Next'; /* se puede quitar */
+
+                downloadButton.addEventListener('click', () => {
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = audioUrl;
+                    a.download = 'memory_try1.wav';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    setTimeout(function() {
+                         window.location.href = "test3_part2.html"
+                        }, 1)
+                });
+            });
+
+            document.getElementById('start').disabled = true;
+            document.getElementById('stop').disabled = false;
+        });
+
+        document.getElementById('stop').addEventListener('click', () => {
+            mediaRecorder.stop();
+            document.getElementById('start').disabled = true;
+            document.getElementById('stop').disabled = true;
+            document.getElementById('downloadLink').disabled = false;
+
+            audioChunks = [];
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 7 - Part 3</title>
+    <style>
+        .text-box {
+            width: 350px;
+            height: 30px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: verdana;
+            position: absolute;
+            line-height: 30px; /*centrar texto verticalmente*/
+        }
+        
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body style="background-color:powderblue;">
+    
+    
+    <h1 style=" font-family: Verdana; text-align: center;">Test 7 - Part 3</h1>
+    
+    <input type="text" id="first" class="text-box" placeholder="Write here one of the words you remember" style = "top:90px; left: 65%; transform: translateX(-50%); ">
+    <input type="text" id="second" class="text-box" placeholder="Write here one of the words you remember" style = "top:150px; left: 65%; transform: translateX(-50%); ">
+    <input type="text" id="third" class="text-box" placeholder="Write here one of the words you remember" style = "top:210px; left: 65%; transform: translateX(-50%); ;">
+    <input type="text" id="fourth" class="text-box" placeholder="Write here one of the words you remember" style = "top:270px; left: 65%; transform: translateX(-50%); ;">
+    <input type="text" id="fifth" class="text-box" placeholder="Write here one of the words you remember" style = "top:330px; left: 65%; transform: translateX(-50%); ;">
+
+    <div class = "text-box" style = "top: 90px; left: 35%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Nose, hand, face, shoulder, leg</div>
+    <div class = "text-box" style = "top: 150px; left: 35%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Denim, velvet, cotton, nylon, silk</div>
+    <div class = "text-box" style = "top: 210px; left: 35%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Church, school, hospital, library, store</div>
+    <div class = "text-box" style = "top: 270px; left: 35%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Rose, tulip, lily, daisy,daffodil</div>
+    <div class = "text-box" style = "top: 330px; left: 35%; transform: translateX(-50%);background-color:white;text-align: center; border:1px solid gray">Red, blue, green, yellow, purple</div>
+
+
+
+    
+    
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 50%; transform: translateX(-50%); height:50px; width:75px; font-size:140%;" >Next</button>
+    
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
+        <source src="test7_part3.mp3" type="audio/mpeg" >
+    </audio>
+
+    <script>
+        function downloadText() {
+        // Obtener el contenido del textarea
+        var contenido1 = document.getElementById("first").value;
+        var contenido2 = document.getElementById("second").value;
+        var contenido3 = document.getElementById("third").value;
+        var contenido4 = document.getElementById("fourth").value;
+        var contenido5 = document.getElementById("fifth").value;
+       
+   
+        // Crear un objeto Blob para el contenido
+        var blob = new Blob(["FACE: ", contenido1,"\nVELVET: ", contenido2,"\nCHURCH: ",contenido3, "\nDAISY: ", contenido4, "\nRED: ", contenido5], { type: "text/plain;charset=utf-8" });
+    
+        // Guardar el Blob como nameLastname
+        saveAs(blob, "delayed_recall_3.txt");
+
+        setTimeout(function() {
+        window.location.href = "test8_part1.html"
+        }, 1)
+
+        
+    }
+</script>
+</body>
+</html>

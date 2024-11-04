@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoCA Test 2</title>
+    <title>Test 2</title>
     <style>
         .text-box {
             width: 100px;
@@ -21,19 +21,19 @@
     
     <h1 style=" font-family: Verdana; text-align: center;">Test 2</h1>
     
-    <img class="image" src="lion.jpg"  style="width:275px;height:175px; position: absolute;top:125px; left:320px;">
-    <img class="image" src="rhino.jpg" style="width:275px;height:175px; position: absolute;top:125px; left:620px;">
-    <img class="image" src="camel.jpg" style="width:275px;height:175px; position: absolute;top:125px; left:920px;">
+    <img class="image" src="lion.jpg"  style="width:275px;height:175px; position: absolute;top:125px; left: 30%; transform: translateX(-50%); ;">
+    <img class="image" src="rhino.jpg" style="width:275px;height:175px; position: absolute;top:125px; left: 50%; transform: translateX(-50%); ">
+    <img class="image" src="camel.jpg" style="width:275px;height:175px; position: absolute;top:125px; left: 70%; transform: translateX(-50%); ;">
 
-    <input type="text" id="textLion" class="text-box" placeholder="Write here" style = "top:315px; left: 400px;">
-    <input type="text" id="textRhino" class="text-box" placeholder="Write here" style = "top:315px; left: 700px;">
-    <input type="text" id="textCamel" class="text-box" placeholder="Write here" style = "top:315px; left: 1000px;">
+    <input type="text" id="textLion" class="text-box" placeholder="Write here" style = "top:315px; left: 30%; transform: translateX(-50%); ">
+    <input type="text" id="textRhino" class="text-box" placeholder="Write here" style = "top:315px; left: 50%; transform: translateX(-50%); ">
+    <input type="text" id="textCamel" class="text-box" placeholder="Write here" style = "top:315px; left: 70%; transform: translateX(-50%); ;">
 
     
     
-    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 675px; height:75px; width:150px; font-size:140%;" >Finish</button>
+    <button onclick="downloadText()" style="position: absolute;top: 380px; left: 50%; transform: translateX(-50%); height:50px; width:75px; font-size:140%;" >Next</button>
     
-    <audio controls autoplay style="position: absolute; top: 500px; left: 600px">
+    <audio controls autoplay style="position: absolute; top: 500px; left: 50%; transform: translateX(-50%); ">
         <source src="test2.mp3" type="audio/mpeg" >
     </audio>
 
@@ -52,7 +52,7 @@
         saveAs(blob, "animals.txt");
 
         setTimeout(function() {
-        window.location.href = "end.html"
+        window.location.href = "test3_part1.html"
         }, 1)
 
         
